@@ -3,6 +3,7 @@ package com.churninsight.api.service;
 
 import com.churninsight.api.dto.PredictionRequestDTO;
 import com.churninsight.api.dto.PredictionResponseDTO;
+import com.churninsight.api.dto.StatsResponseDTO;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -26,4 +27,14 @@ public class PredictionService {
                 return new PredictionResponseDTO("Va a continuar", 0.15);
             }
         }
+
+    public PredictionResponseDTO predictByClientId(String clientId) {
+        return new PredictionResponseDTO("Va a cancelar", 0.82);
+    }
+
+
+    public StatsResponseDTO getStats() {
+        return new StatsResponseDTO(500, 120, 0.24);
+    }
 }
+
