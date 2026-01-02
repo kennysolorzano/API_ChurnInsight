@@ -1,13 +1,10 @@
 # 🐉 DracoStack - ChurnInsight API
 
 <p align="center">
-<<<<<<< HEAD
-=======
   <img src="assets/logo.png" alt="DracoStack Logo" width="350"/>
 </p>
 
 <p align="center">
->>>>>>> 4613890 (Carpeta equipo data)
   <strong>API REST desarrollada en Spring Boot para el análisis predictivo de churn (cancelación de clientes)</strong>
 </p>
 
@@ -30,6 +27,7 @@
 - [Configuración](#-configuración)
 - [Endpoints](#-endpoints)
 - [Validaciones](#-validaciones)
+- [Avances de Data Science](#-avances-de-data-science)
 - [Manejo de Errores](#-manejo-de-errores)
 - [Docker](#-docker)
 - [🏆 Conclusiones](#-conclusiones)
@@ -180,6 +178,40 @@ Content-Type: application/json
 | prevision | String | Predicción: "Va a cancelar" / "Va a continuar" |
 | probabilidad | Double | Probabilidad de la predicción (0.0 - 1.0) |
 
+## 📈 Avances de Data Science
+
+El equipo de Data Science consolidó un pipeline reproducible con el dataset **Netflix Customer Churn** (5 000 registros) alojado en Kaggle. Para facilitar el versionado, el CSV limpio se consume directamente desde GitHub:
+
+```
+https://raw.githubusercontent.com/SILVIAHERNANDEZM03/API_ChurnInsight/refs/heads/feature-data-science/DataScience/data/data_original.csv
+```
+
+### Variables del dataset
+- Identificadores: `customer_id` (UUID), `public_id` generado con hash SHA-256 (`CUS-XXXXXXXX`).
+- Demografía y uso: `gender`, `age`, `region`, `device`, `subscription_type`, `payment_method`, `favorite_genre`.
+- Métricas de actividad: `watch_hours`, `avg_watch_time_per_day`, `last_login_days`, `number_of_profiles`, `monthly_fee`.
+- Variable objetivo: `churned` (booleano tras mapear 0/1).
+
+### ETL y preprocesamiento
+- Conversión de columnas categóricas a `category` y normalización a minúsculas para consistencia.
+- Generación de `public_id` a partir de `customer_id` para exponer identificadores no sensibles.
+- Conversión de `churned` a booleano y verificación de nulos y duplicados (sin incidencias).
+- Codificación `one-hot` (drop_first) y partición de datos 80/20 para entrenamiento y prueba.
+
+### Modelado y resultados
+- Modelos evaluados: **Regresión Logística**, **Árbol de Decisión**, **Random Forest**.
+- Métricas (accuracy / precision / recall / F1):
+  - Logistic Regression: 0.897 / 0.884 / 0.914 / 0.899
+  - Decision Tree: 0.986 / 0.986 / 0.986 / 0.986
+  - Random Forest: 0.979 / 0.984 / 0.974 / 0.979
+- El mejor desempeño lo obtuvo el **Árbol de Decisión**. Una búsqueda en rejilla afinó hiperparámetros óptimos: `criterion=entropy`, `max_depth=12`, `min_samples_split=5`, `min_samples_leaf=1`, `class_weight=balanced`.
+- Columnas del modelo y estimador ajustado se serializan en `model_columns.joblib` y `model1.joblib` para su futura integración con el microservicio Python.
+
+### Próximos pasos de integración
+- Exponer el modelo afinado mediante el microservicio Python.
+- Conectar el endpoint `/predict` de esta API al microservicio para respuestas en línea.
+- Incorporar validaciones de esquema y versionado de modelo en las respuestas.
+
 ## Validaciones
 
 El DTO de entrada cuenta con las siguientes validaciones:
@@ -267,7 +299,7 @@ Propuestas de mejora y ampliación del modelo.
 - [ ] Documentación con Swagger/OpenAPI
 - [ ] Tests unitarios e integración
 - [ ] CI/CD pipeline
-- [ ] Merge con documentación de Data Science
+- [x] Merge con documentación de Data Science
 
 ## Equipo DracoStack
 
@@ -287,8 +319,6 @@ Este proyecto es desarrollado en colaboración por:
 
 🐉 **DracoStack** - Prediciendo el futuro de tus clientes
 
-<<<<<<< HEAD
 *Proyecto ChurnInsight - Hackathon One 2025*
-=======
 *Proyecto ChurnInsight - Hackathon One 2025*
 >>>>>>> 4613890 (Carpeta equipo data)
