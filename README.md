@@ -32,6 +32,7 @@
 - [Validaciones](#-validaciones)
 - [Manejo de Errores](#-manejo-de-errores)
 - [Docker](#-docker)
+- [🏆 Conclusiones](#-conclusiones)
 - [Roadmap](#-roadmap)
 - [Equipo](#-equipo)
 
@@ -242,6 +243,17 @@ services:
     #   - database
     #   - python-ml
 ```
+
+## 🏆 Conclusiones
+
+### 6.1 Conclusiones
+Resumen de los principales hallazgos del estudio.
+
+### 6.2 Limitaciones del proyecto
+Descripción de las restricciones y supuestos del análisis.
+
+### 6.3 Líneas de trabajo futuro
+Propuestas de mejora y ampliación del modelo.
 
 ## Roadmap
 
