@@ -316,9 +316,13 @@ En **Análisis Avanzado** existe el botón **Exportar a PDF**:
 
 ## 👥 Equipo DracoStack
 
-- **Hernán Cerda** - Backend & Integración
-- **Silvia Hernández** - Backend & Arquitectura
-- **Aldo Sánchez** - Backend & ML Connection
+- **Hernán Cerda** - Backend Developer
+- **Silvia Hernández** - Backend Developer
+- **Aldo Sánchez** - Backend Developer
+- **Kenny Solórzano** - Backend Developer
+- **Leslie Rodriguez** - Data Engineer
+- **Rocio Davila** - Data Scientist
+- **Elizabeth Garces** - Data Scientist
 
 <hr/>
 
